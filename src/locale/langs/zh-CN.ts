@@ -6,7 +6,13 @@ export default {
   PC: {
     UpgradeGuide: 'PC端升级指南',
     tutorial: 'PC端操作指南',
-    chip: '如何确认芯片类型？'
+    chip: '如何确认芯片类型？',
+    info: {
+      lds: {
+        title: '',
+        text: ''
+      }
+    }
   },
   APP: {
     Community: '社区版APP',
@@ -20,7 +26,7 @@ export default {
     DownErrorMsg: '点击右上角按钮,选择在默认浏览器中打开',
     CommunityMsg: '适配于LaserPecker 1,LaserPecker 2,LaserPecker 3',
     CreationMsg:
-      '目前只适配于LaserPecker 4及LaserPecker LX1（L3及以下机型正在火速兼容中），其他机型请下载LaserPecker APP'
+      '目前只适配于LaserPecker 4及LaserPecker LX1（L2及以下机型正在火速兼容中），其他机型请下载LaserPecker APP'
   },
   HistoricalEdition: '历史版本',
   download: '点击下载'
