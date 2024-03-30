@@ -26,7 +26,7 @@ export default {
     DownErrorMsg: '点击右上角按钮,选择在默认浏览器中打开',
     CommunityMsg: '适配于LaserPecker 1,LaserPecker 2,LaserPecker 3',
     CreationMsg:
-      '目前只适配于LaserPecker 4及LaserPecker LX1（L2及以下机型正在火速兼容中），其他机型请下载LaserPecker APP'
+      '目前只适配于LaserPecker 4及LaserPecker LX1（仅适配L1及以上机型），其他机型请下载LaserPecker APP'
   },
   HistoricalEdition: '历史版本',
   download: '点击下载'

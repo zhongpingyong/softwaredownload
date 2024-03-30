@@ -2,127 +2,7 @@
   <div v-if="error">Error NetWork</div>
   <div v-else-if="loading">Loading...</div>
   <div v-else class="mobile">
-    <div class="card">
-      <div class="card_sider">
-        <img src="@/assets/logo.png" style="width: 92px; height: 92px" alt="" />
-      </div>
-      <div class="card_content">
-        <div class="name">{{ $t('APP.CommunityName') }}</div>
-        <div class="app_type">{{ AppType[0] }}</div>
-        <div class="app_description">{{ $t('APP.CommunityMsg') }}</div>
-        <div class="steps">
-          <div
-            class="steps_item"
-            :class="{ active: CommunityCur === 0 }"
-            @click="handleCommunityCur(0)"
-          >
-            Android
-          </div>
-          <div
-            class="steps_item"
-            :class="{ active: CommunityCur === 1 }"
-            @click="handleCommunityCur(1)"
-          >
-            IOS
-          </div>
-        </div>
-        <div class="line_btns">
-          <a
-            class="line_btn"
-            :href="'https://faq.hingin.com/docs/privacy' + (locale.startsWith('zh') ? '' : '_en')"
-            target="_blank"
-          >
-            {{ $t('APP.Privacy') }}
-          </a>
-          <a
-            class="line_btn"
-            :href="'https://faq.hingin.com/docs/community' + (locale.startsWith('zh') ? '' : '_en')"
-            target="_blank"
-          >
-            {{ $t('APP.CommunityRules') }}
-          </a>
-        </div>
-        <div class="download" v-if="CommunityCur === 0">
-          <div class="download_wrap">
-            <div class="left">
-              <div class="title">Android v{{ AndroidCommunitysComputed.name }}</div>
-              <img :src="locale.startsWith('zh') ? zhImage : enImage" class="image" />
-              <div class="msg" style="margin-top: 3px" v-if="AndroidCommunitysComputed.date">
-                {{ AndroidCommunitysComputed.date }}
-              </div>
-            </div>
-            <div class="download_button" @click="handleDown(AndroidCommunitysComputed.path)">
-              {{ $t('APP.DownLoad') }}
-            </div>
-          </div>
-          <div class="download_message">
-            <div class="title">{{ $t('APP.UpdateContent') }}</div>
-            <div class="msg">
-              {{
-                locale.startsWith('zh')
-                  ? AndroidCommunitysComputed.message
-                  : AndroidCommunitysComputed.message_en
-              }}
-            </div>
-          </div>
-          <div
-            class="download_history"
-            :class="{ open: AndroidCommunitys.open }"
-            @click="handleHistoryClick(AndroidCommunitys)"
-          >
-            <div class="title">{{ $t('HistoricalEdition') }}</div>
-            <Arrow class="icon" />
-          </div>
-          <div class="download_history_list">
-            <div v-for="(item, index) in AndroidCommunitys.list" :key="index">
-              <div class="download_wrap">
-                <div class="left">
-                  <div class="title">Android v{{ item.name }}</div>
-                  <div class="msg" style="margin-top: 3px" v-if="item.date">
-                    {{ item.date }}
-                  </div>
-                </div>
-                <div class="download_button" @click="handleDown(item.path)">
-                  {{ $t('APP.DownLoad') }}
-                </div>
-              </div>
-              <div class="download_message">
-                <div class="title">{{ $t('APP.UpdateContent') }}</div>
-                <div class="msg">
-                  {{ locale.startsWith('zh') ? item.message : item.message_en }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="download" v-if="CommunityCur === 1">
-          <div class="download_wrap">
-            <div class="left">
-              <div class="title">IOS v{{ IosCommunitysComputed.name }}</div>
-              <img :src="locale.startsWith('zh') ? zhImage : enImage" class="image" />
-              <div class="msg" style="margin-top: 3px" v-if="IosCommunitysComputed.date">
-                {{ IosCommunitysComputed.date }}
-              </div>
-            </div>
-            <div class="download_button" @click="handleDown(IosCommunitysComputed.path)">
-              {{ $t('APP.DownLoad') }}
-            </div>
-          </div>
-          <div class="download_message">
-            <div class="title">{{ $t('APP.UpdateContent') }}</div>
-            <div class="msg">
-              {{
-                locale.startsWith('zh')
-                  ? IosCommunitysComputed.message
-                  : IosCommunitysComputed.message_en
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 社区版本 -->
+    <!-- 创作版本 -->
     <div class="card">
       <div class="card_sider">
         <img src="@/assets/logo1.png" style="width: 92px; height: 92px" alt="" />
@@ -248,7 +128,127 @@
         </div>
       </div>
     </div>
-    <!-- 创作版本 -->
+
+    <!-- 社区版本 -->
+    <div class="card">
+      <div class="card_sider">
+        <img src="@/assets/logo.png" style="width: 92px; height: 92px" alt="" />
+      </div>
+      <div class="card_content">
+        <div class="name">{{ $t('APP.CommunityName') }}</div>
+        <div class="app_type">{{ AppType[0] }}</div>
+        <div class="app_description">{{ $t('APP.CommunityMsg') }}</div>
+        <div class="steps">
+          <div
+            class="steps_item"
+            :class="{ active: CommunityCur === 0 }"
+            @click="handleCommunityCur(0)"
+          >
+            Android
+          </div>
+          <div
+            class="steps_item"
+            :class="{ active: CommunityCur === 1 }"
+            @click="handleCommunityCur(1)"
+          >
+            IOS
+          </div>
+        </div>
+        <div class="line_btns">
+          <a
+            class="line_btn"
+            :href="'https://faq.hingin.com/docs/privacy' + (locale.startsWith('zh') ? '' : '_en')"
+            target="_blank"
+          >
+            {{ $t('APP.Privacy') }}
+          </a>
+          <a
+            class="line_btn"
+            :href="'https://faq.hingin.com/docs/community' + (locale.startsWith('zh') ? '' : '_en')"
+            target="_blank"
+          >
+            {{ $t('APP.CommunityRules') }}
+          </a>
+        </div>
+        <div class="download" v-if="CommunityCur === 0">
+          <div class="download_wrap">
+            <div class="left">
+              <div class="title">Android v{{ AndroidCommunitysComputed.name }}</div>
+              <img :src="locale.startsWith('zh') ? zhImage : enImage" class="image" />
+              <div class="msg" style="margin-top: 3px" v-if="AndroidCommunitysComputed.date">
+                {{ AndroidCommunitysComputed.date }}
+              </div>
+            </div>
+            <div class="download_button" @click="handleDown(AndroidCommunitysComputed.path)">
+              {{ $t('APP.DownLoad') }}
+            </div>
+          </div>
+          <div class="download_message">
+            <div class="title">{{ $t('APP.UpdateContent') }}</div>
+            <div class="msg">
+              {{
+                locale.startsWith('zh')
+                  ? AndroidCommunitysComputed.message
+                  : AndroidCommunitysComputed.message_en
+              }}
+            </div>
+          </div>
+          <div
+            class="download_history"
+            :class="{ open: AndroidCommunitys.open }"
+            @click="handleHistoryClick(AndroidCommunitys)"
+          >
+            <div class="title">{{ $t('HistoricalEdition') }}</div>
+            <Arrow class="icon" />
+          </div>
+          <div class="download_history_list">
+            <div v-for="(item, index) in AndroidCommunitys.list" :key="index">
+              <div class="download_wrap">
+                <div class="left">
+                  <div class="title">Android v{{ item.name }}</div>
+                  <div class="msg" style="margin-top: 3px" v-if="item.date">
+                    {{ item.date }}
+                  </div>
+                </div>
+                <div class="download_button" @click="handleDown(item.path)">
+                  {{ $t('APP.DownLoad') }}
+                </div>
+              </div>
+              <div class="download_message">
+                <div class="title">{{ $t('APP.UpdateContent') }}</div>
+                <div class="msg">
+                  {{ locale.startsWith('zh') ? item.message : item.message_en }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="download" v-if="CommunityCur === 1">
+          <div class="download_wrap">
+            <div class="left">
+              <div class="title">IOS v{{ IosCommunitysComputed.name }}</div>
+              <img :src="locale.startsWith('zh') ? zhImage : enImage" class="image" />
+              <div class="msg" style="margin-top: 3px" v-if="IosCommunitysComputed.date">
+                {{ IosCommunitysComputed.date }}
+              </div>
+            </div>
+            <div class="download_button" @click="handleDown(IosCommunitysComputed.path)">
+              {{ $t('APP.DownLoad') }}
+            </div>
+          </div>
+          <div class="download_message">
+            <div class="title">{{ $t('APP.UpdateContent') }}</div>
+            <div class="msg">
+              {{
+                locale.startsWith('zh')
+                  ? IosCommunitysComputed.message
+                  : IosCommunitysComputed.message_en
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

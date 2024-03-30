@@ -1,16 +1,6 @@
 <template>
   <div class="MobileCenter">
     <div class="MobileCenter_item">
-      <router-link :to="{ name: 'Community' }" class="MobileCenter_item_content">
-        <div class="MobileCenter_item_content_card">
-          <img src="@/assets/logo.png" alt="" />
-          <div class="name">LaserPecker</div>
-          <div class="button">{{ $t('APP.Community') }}</div>
-        </div>
-        <div class="MobileCenter_item_content_msg">{{ $t('APP.CommunityMsg') }}</div>
-      </router-link>
-    </div>
-    <div class="MobileCenter_item">
       <router-link :to="{ name: 'Creation' }" class="MobileCenter_item_content">
         <div class="MobileCenter_item_content_card">
           <img src="@/assets/logo1.png" alt="" />
@@ -18,6 +8,16 @@
           <div class="button">{{ $t('APP.Creation') }}</div>
         </div>
         <div class="MobileCenter_item_content_msg">{{ $t('APP.CreationMsg') }}</div>
+      </router-link>
+    </div>
+    <div class="MobileCenter_item">
+      <router-link :to="{ name: 'Community' }" class="MobileCenter_item_content">
+        <div class="MobileCenter_item_content_card">
+          <img src="@/assets/logo.png" alt="" />
+          <div class="name">LaserPecker</div>
+          <div class="button">{{ $t('APP.Community') }}</div>
+        </div>
+        <div class="MobileCenter_item_content_msg">{{ $t('APP.CommunityMsg') }}</div>
       </router-link>
     </div>
   </div>

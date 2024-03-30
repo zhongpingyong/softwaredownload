@@ -57,7 +57,7 @@ export default {
       'Click the button in the upper right corner and select Open in your default browser',
     CommunityMsg: 'Be adapted to LaserPecker 1,LaserPecker 2,LaserPecker 3',
     CreationMsg:
-      'Currently, it only applies to Laser Pecker 4 and Laser Pecker LX1 (L2 and later models are being quickly compatible). For other models,please download Laser Pecker APP'
+      'Currently, it only applies to Laser Pecker 4 and Laser Pecker LX1 (Suitable for all models except the LP1 series). For other models,please download Laser Pecker APP'
   },
   HistoricalEdition: 'History Versions',
   download: 'Click Download'
