@@ -1,6 +1,6 @@
 <template>
   <div v-if="error">Error NetWork</div>
-  <div v-else-if="loading">Loading...</div>
+  <div v-else-if="loading" style="text-align: center">Loading...</div>
   <div v-else class="mobile">
     <div class="card">
       <div class="card_sider">

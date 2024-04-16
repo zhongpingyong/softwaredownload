@@ -1,17 +1,17 @@
 <template>
   <div class="container">
-    <div class="subsection">
-      <router-link to="/" class="subsection_item" :class="{ active: route.name === 'pc' }">
-        {{ $t('Platform.PC') }}
-      </router-link>
-      <router-link
-        to="/mobile"
-        class="subsection_item"
-        :class="{ active: route.fullPath?.includes('mobile') }"
-      >
-        {{ $t('Platform.Mobile') }}
-      </router-link>
-    </div>
+    <!--    <div class="subsection">-->
+    <!--      <router-link to="/" class="subsection_item" :class="{ active: route.name === 'pc' }">-->
+    <!--        {{ $t('Platform.PC') }}-->
+    <!--      </router-link>-->
+    <!--      <router-link-->
+    <!--        to="/mobile"-->
+    <!--        class="subsection_item"-->
+    <!--        :class="{ active: route.fullPath?.includes('mobile') }"-->
+    <!--      >-->
+    <!--        {{ $t('Platform.Mobile') }}-->
+    <!--      </router-link>-->
+    <!--    </div>-->
     <div class="component">
       <router-view v-slot="{ Component }">
         <keep-alive>
@@ -34,11 +34,12 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
   // 0创作版本 1社区版本
   const type = parseInt(getQueryVariable('type'))
   if (type === 0) {
-    router.replace({ name: 'Creation' })
+    console.log(router)
+    // router.replace({ name: 'Creation' })
   } else if (type === 1) {
-    router.replace({ name: 'Community' })
+    // router.replace({ name: 'Community' })
   } else {
-    router.replace({ name: 'mobile' })
+    // router.replace({ name: 'mobile' })
   }
 }
 </script>
@@ -46,10 +47,11 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
 <style lang="scss" scoped>
 .container {
   box-sizing: border-box;
-  padding: 100px 0;
+  //padding: 100px 0;
+  padding-top: 100px;
   .component {
     box-sizing: border-box;
-    padding: 40px 30px;
+    //padding: 40px 30px;
   }
 }
 .subsection {

@@ -1,125 +1,140 @@
 <template>
   <div v-if="error">Error NetWork</div>
-  <div v-else-if="loading">Loading...</div>
-  <div v-else class="pc">
-    <div class="pc_left">
-      <div class="pc_logo">
-        <img src="@/assets/logo1.png" alt="" />
-        <div class="pc_logo_text">LaserPecker Design Space</div>
-      </div>
-      <div class="flag">Let Creativity Fly！</div>
-      <div class="pc_buttons">
-        <a class="button" :class="{ active: active === 'win' }" :href="json.winPath">
-          <Window />
-          <div class="text">
-            <div class="title">Windows</div>
+  <div v-else-if="loading" style="text-align: center">Loading...</div>
+  <div v-else>
+    <div class="pc">
+      <div class="pc_left">
+        <div class="pc_left_top_box">
+          <div class="pc_logo">
+            <!--        <img src="@/assets/logo1.png" alt="" />-->
+            <div class="pc_logo_text">LaserPecker Design Space</div>
           </div>
-        </a>
-        <a class="button" :class="{ active: active === 'mac' }" :href="json.macIntelPath">
-          <MAC />
-          <div class="text">
-            <div class="title">MacOS</div>
-            <div class="msg">For Intel chips</div>
+          <div class="flag">Design, Customize and Create</div>
+          <div class="flag_des">
+            LaserPecker Design Space is a powerful dedicated tool for our laser engraving and
+            cutting machines. Easily create projects with personalized engravings, intricate
+            patterns, or precise cuts on a variety of materials.
           </div>
-        </a>
-        <a class="button" :class="{ active: active === 'mac_m' }" :href="json.macPath">
-          <MAC />
-          <div class="text">
-            <div class="title">MacOS</div>
-            <div class="msg">For Apple Silicon</div>
-          </div>
-        </a>
-      </div>
-      <!-- <div class="message" v-if="json.message">{{ json.message }}</div> -->
-      <div style="display: flex; flex-direction: column">
-        <div class="line_btn" :class="{ open: historyOpen }" @click="handleHistory">
-          {{ $t('HistoricalEdition') }}
         </div>
-        <div class="history">
-          <div class="history_sider">
-            <div
-              class="history_sider_item"
-              :class="{ active: historyTab === 0 }"
-              @click="handleClick(0)"
-            >
-              Windows
+
+        <div class="pc_buttons">
+          <a class="button" :class="{ active: active === 'win' }" :href="json.winPath">
+            <Window />
+            <div class="text">
+              <div class="title">Windows</div>
             </div>
-            <div
-              class="history_sider_item"
-              :class="{ active: historyTab === 1 }"
-              @click="handleClick(1)"
-            >
-              MacOS For Intel
+          </a>
+          <a class="button" :class="{ active: active === 'mac' }" :href="json.macIntelPath">
+            <MAC />
+            <div class="text">
+              <div class="title">MacOS</div>
+              <div class="msg">For Intel chips</div>
             </div>
-            <div
-              class="history_sider_item"
-              :class="{ active: historyTab === 2 }"
-              @click="handleClick(2)"
-            >
-              MacOS For Apple
+          </a>
+          <a class="button" :class="{ active: active === 'mac_m' }" :href="json.macPath">
+            <MAC />
+            <div class="text">
+              <div class="title">MacOS</div>
+              <div class="msg">For Apple Silicon</div>
             </div>
+          </a>
+        </div>
+        <!-- <div class="message" v-if="json.message">{{ json.message }}</div> -->
+        <div
+          class="line_btn_wrap"
+          style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap"
+        >
+          <div class="line_btn" :class="{ open: historyOpen }" @click="handleHistory">
+            {{ $t('HistoricalEdition') }}
           </div>
-          <div class="history_content">
-            <div v-for="(data, index) in datas" :key="index">
-              <div v-if="historyTab === index">
-                <div class="history_content_item" v-for="(item, index) in data" :key="index">
-                  <div class="download_wrap">
-                    <div class="left">
-                      <div class="title">v{{ item.name }}</div>
+          <div class="history">
+            <div class="history_sider">
+              <div
+                class="history_sider_item"
+                :class="{ active: historyTab === 0 }"
+                @click="handleClick(0)"
+              >
+                Windows
+              </div>
+              <div
+                class="history_sider_item"
+                :class="{ active: historyTab === 1 }"
+                @click="handleClick(1)"
+              >
+                MacOS For Intel
+              </div>
+              <div
+                class="history_sider_item"
+                :class="{ active: historyTab === 2 }"
+                @click="handleClick(2)"
+              >
+                MacOS For Apple
+              </div>
+            </div>
+            <div class="history_content">
+              <div v-for="(data, index) in datas" :key="index">
+                <div v-if="historyTab === index">
+                  <div class="history_content_item" v-for="(item, index) in data" :key="index">
+                    <div class="download_wrap">
+                      <div class="left">
+                        <div class="title">v{{ item.name }}</div>
+                      </div>
+                      <a class="download_button" :href="item.path">
+                        {{ $t('APP.DownLoad') }}
+                      </a>
                     </div>
-                    <a class="download_button" :href="item.path">
-                      {{ $t('APP.DownLoad') }}
-                    </a>
-                  </div>
-                  <div class="download_message">
-                    <div class="title">{{ $t('APP.UpdateContent') }}</div>
-                    <div class="msg">
-                      {{ locale.startsWith('zh') ? item.message : item.message_en }}
+                    <div class="download_message">
+                      <div class="title">{{ $t('APP.UpdateContent') }}</div>
+                      <div class="msg">
+                        {{ locale.startsWith('zh') ? item.message : item.message_en }}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <a
+            class="line_btn"
+            :href="
+              locale.startsWith('zh')
+                ? 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff'
+                : 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf'
+            "
+            target="_blank"
+          >
+            {{ $t('PC.tutorial') }}
+          </a>
+          <a
+            class="line_btn"
+            :href="
+              locale.startsWith('zh')
+                ? 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/PC-Bate-UserManual-CN.pdf'
+                : 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/Laserpecker-User-manual.pdf'
+            "
+            target="_blank"
+          >
+            {{ $t('PC.UpgradeGuide') }}
+          </a>
+          <a
+            class="line_btn"
+            :href="
+              locale.startsWith('zh')
+                ? 'https://laserpecker.feishu.cn/wiki/Mp5Iw493FipGBLkF5FhcSfainpe'
+                : 'https://laserpecker.feishu.cn/wiki/KfcZw845siawpPk2kiBcSbRAnMb'
+            "
+            target="_blank"
+          >
+            {{ $t('PC.chip') }}
+          </a>
         </div>
-        <a
-          class="line_btn"
-          :href="
-            locale.startsWith('zh')
-              ? 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff'
-              : 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf'
-          "
-          target="_blank"
-        >
-          {{ $t('PC.tutorial') }}
-        </a>
-        <a
-          class="line_btn"
-          :href="
-            locale.startsWith('zh')
-              ? 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/PC-Bate-UserManual-CN.pdf'
-              : 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/Laserpecker-User-manual.pdf'
-          "
-          target="_blank"
-        >
-          {{ $t('PC.UpgradeGuide') }}
-        </a>
-        <a
-          class="line_btn"
-          :href="
-            locale.startsWith('zh')
-              ? 'https://laserpecker.feishu.cn/wiki/Mp5Iw493FipGBLkF5FhcSfainpe'
-              : 'https://laserpecker.feishu.cn/wiki/KfcZw845siawpPk2kiBcSbRAnMb'
-          "
-          target="_blank"
-        >
-          {{ $t('PC.chip') }}
-        </a>
+      </div>
+      <div class="pc_right">
+        <img src="@/assets/pcbg.png" alt="" style="width: 100%" />
       </div>
     </div>
-
-    <div class="pc_right">
-      <img src="@/assets/pcbg.png" alt="" style="width: 100%" />
+    <div class="pc_bottom">
+      <p class="pc_bottom_title">From Concept to Creation</p>
     </div>
   </div>
 </template>
@@ -190,7 +205,8 @@ function handleHistory() {
 
 <style lang="scss" scoped>
 .pc {
-  max-width: 1200px;
+  --page-width: 1306px;
+  max-width: var(--page-width);
   margin: auto;
   display: flex;
   align-items: center;
@@ -202,46 +218,61 @@ function handleHistory() {
       width: 54px;
     }
     &_text {
-      font-size: 16px;
-      margin-left: 10px;
-      font-weight: 700;
+      font-size: 20px;
+      //margin-left: 10px;
+      font-weight: 300;
+      color: #353535;
     }
   }
   &_left {
     flex: 1;
     min-width: 1px;
   }
+  &_left_top_box {
+    max-width: 543px;
+  }
   &_right {
-    width: 500px;
+    max-width: 614px;
     font-size: 0;
   }
   .flag {
-    font-size: 26px;
-    font-weight: bold;
-    margin-top: 30px;
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 18px;
+  }
+  .flag_des {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 18px;
+    color: #333333;
+    line-height: 22px;
   }
   &_buttons {
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
+    margin-bottom: 21px;
     gap: 10px;
     .button {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 20px;
       font-size: 20px;
       font-weight: bold;
       text-decoration: none;
       color: #000;
-      padding: 18px 25px;
-      background: #d9d9d9;
+      padding: 15px 25px;
+      //background: #d9d9d9;
+      background: #ffffff;
       border-radius: 8px;
       transition: 0.3s ease-in-out;
       order: 1;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
       .msg {
         font-size: 14px;
         font-weight: normal;
         margin-top: 3px;
+        color: #969696;
       }
       &.active {
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5) !important;
@@ -260,8 +291,8 @@ function handleHistory() {
   }
   .line_btn {
     font-size: 14px;
-    color: #4799eb;
-    margin-top: 15px;
+    color: #0a84ff;
+    //margin-top: 21px;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
@@ -283,7 +314,20 @@ function handleHistory() {
     padding: 12px;
   }
 }
-
+.pc_bottom {
+  background: #fbd13d;
+  width: 100%;
+  margin-top: 103px;
+  .pc_bottom_title {
+    color: #000000;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 60px;
+    padding-top: 99px;
+    padding-bottom: 36px;
+  }
+}
 .history {
   margin-top: 15px;
   display: flex;
@@ -355,7 +399,8 @@ function handleHistory() {
   }
   .msg {
     font-size: 13px;
-    color: #b0b0b0;
+    //color: #b0b0b0;
+    color: #969696;
     word-wrap: break-word;
     word-break: break-all;
     white-space: pre-line;
@@ -367,15 +412,25 @@ function handleHistory() {
 }
 @media (max-width: 1024px) {
   .pc {
+    flex-direction: column-reverse;
+    gap: 60px;
+    .line_btn_wrap {
+      gap: 10px !important;
+    }
     &_right {
-      display: none;
+      //display: none;
     }
   }
 }
 @media (max-width: 768px) {
   .pc {
+    flex-direction: column-reverse;
+    gap: 60px;
+    .line_btn_wrap {
+      gap: 10px !important;
+    }
     &_right {
-      display: none;
+      //display: none;
     }
   }
   .history_sider {
