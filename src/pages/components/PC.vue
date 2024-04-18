@@ -1,16 +1,15 @@
 <template>
   <div v-if="error">Error NetWork</div>
   <div v-else-if="loading" style="text-align: center">Loading...</div>
-  <div v-else>
+  <div v-else class="outer">
     <div class="pc">
       <div class="pc_left">
         <div class="pc_left_top_box">
           <div class="pc_logo">
-            <!--        <img src="@/assets/logo1.png" alt="" />-->
-            <div class="pc_logo_text">LaserPecker Design Space</div>
+            <div class="pc_logo_text MonaSans">LaserPecker Design Space</div>
           </div>
-          <div class="flag">Design, Customize and Create</div>
-          <div class="flag_des">
+          <div class="flag CalSans">Design, Customize and Create</div>
+          <div class="flag_des MonaSans">
             LaserPecker Design Space is a powerful dedicated tool for our laser engraving and
             cutting machines. Easily create projects with personalized engravings, intricate
             patterns, or precise cuts on a variety of materials.
@@ -44,56 +43,17 @@
           class="line_btn_wrap"
           style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap"
         >
-          <div class="line_btn" :class="{ open: historyOpen }" @click="handleHistory">
+          <a
+            class="line_btn"
+            :href="
+              locale.startsWith('zh')
+                ? 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff'
+                : 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf'
+            "
+            target="_blank"
+          >
             {{ $t('HistoricalEdition') }}
-          </div>
-          <div class="history">
-            <div class="history_sider">
-              <div
-                class="history_sider_item"
-                :class="{ active: historyTab === 0 }"
-                @click="handleClick(0)"
-              >
-                Windows
-              </div>
-              <div
-                class="history_sider_item"
-                :class="{ active: historyTab === 1 }"
-                @click="handleClick(1)"
-              >
-                MacOS For Intel
-              </div>
-              <div
-                class="history_sider_item"
-                :class="{ active: historyTab === 2 }"
-                @click="handleClick(2)"
-              >
-                MacOS For Apple
-              </div>
-            </div>
-            <div class="history_content">
-              <div v-for="(data, index) in datas" :key="index">
-                <div v-if="historyTab === index">
-                  <div class="history_content_item" v-for="(item, index) in data" :key="index">
-                    <div class="download_wrap">
-                      <div class="left">
-                        <div class="title">v{{ item.name }}</div>
-                      </div>
-                      <a class="download_button" :href="item.path">
-                        {{ $t('APP.DownLoad') }}
-                      </a>
-                    </div>
-                    <div class="download_message">
-                      <div class="title">{{ $t('APP.UpdateContent') }}</div>
-                      <div class="msg">
-                        {{ locale.startsWith('zh') ? item.message : item.message_en }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </a>
           <a
             class="line_btn"
             :href="
@@ -134,7 +94,40 @@
       </div>
     </div>
     <div class="pc_bottom">
-      <p class="pc_bottom_title">From Concept to Creation</p>
+      <p class="pc_bottom_title CalSans">From Concept to Creation</p>
+      <div class="pc_bottom_content">
+        <div class="pc_bottom_content_tab">
+          <div class="pc_bottom_content_tab_icon">
+            <Book />
+          </div>
+          <div class="pc_bottom_content_tab_label MonaSans">
+            Quick Start with
+            an Easy Learning Curve
+          </div>
+        </div>
+        <div class="pc_bottom_content_tab">
+          <div class="pc_bottom_content_tab_icon">
+            <Grid />
+          </div>
+          <div class="pc_bottom_content_tab_label MonaSans">
+            Material Test Grid
+            for Better Results
+          </div>
+        </div>
+        <div class="pc_bottom_content_tab">
+          <div class="pc_bottom_content_tab_icon">
+            <Setting />
+          </div>
+          <div class="pc_bottom_content_tab_label MonaSans">
+            Precision Control with
+            Multiple Layer Parameter
+            Settings
+          </div>
+        </div>
+        <div class="pc_bottom_content_img">
+          <img src="@/assets/pc_bottom_img.png" alt="From Concept to Creation" style="width: 100%;border-radius: 10px;" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -145,6 +138,9 @@ import { useI18n } from 'vue-i18n'
 import axios from 'axios'
 import Window from '../icon/Window.vue'
 import MAC from '../icon/MAC.vue'
+import Book from '../icon/Book.vue'
+import Grid from '../icon/Grid.vue'
+import Setting from '../icon/Setting.vue'
 import { isMobile, isWin } from './utils'
 
 const { locale } = useI18n()
@@ -157,11 +153,6 @@ const json = reactive({
 })
 const loading = ref(true)
 const error = ref(false)
-const historyTab = ref(0)
-const historyOpen = ref(false)
-function handleClick(val: number) {
-  historyTab.value = val
-}
 const datas = reactive<any[]>([])
 onBeforeMount(() => {
   if (!isMobile()) {
@@ -197,17 +188,22 @@ onBeforeMount(() => {
       error.value = true
     })
 })
-
-function handleHistory() {
-  historyOpen.value = !historyOpen.value
-}
 </script>
 
 <style lang="scss" scoped>
-.pc {
+.outer {
   --page-width: 1306px;
+  .CalSans {
+    font-family: 'Cal Sans';
+  }
+  .MonaSans {
+    font-family: Mona-Sans;
+  };
+}
+.pc {
   max-width: var(--page-width);
   margin: auto;
+  padding: 30px;
   display: flex;
   align-items: center;
   position: relative;
@@ -269,6 +265,7 @@ function handleHistory() {
       order: 1;
       box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
       .msg {
+        font-family: Mona-Sans;
         font-size: 14px;
         font-weight: normal;
         margin-top: 3px;
@@ -290,6 +287,7 @@ function handleHistory() {
     }
   }
   .line_btn {
+    font-family: Mona-Sans;
     font-size: 14px;
     color: #0a84ff;
     //margin-top: 21px;
@@ -327,88 +325,36 @@ function handleHistory() {
     padding-top: 99px;
     padding-bottom: 36px;
   }
-}
-.history {
-  margin-top: 15px;
-  display: flex;
-  background-color: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  display: none;
-  .history_content {
-    flex: 1;
-    min-width: 1px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    max-height: 250px;
-    padding: 15px 15px 0;
-    &_item {
-      margin-bottom: 15px;
-      border-bottom: 1px solid #e5e5e5;
-      padding-bottom: 15px;
-    }
-  }
-  &_sider {
-    width: 200px;
-    flex: none;
-    font-size: 14px;
-    line-height: 45px;
-    border-right: 1px solid #e5e5e5;
-    box-sizing: border-box;
-    padding: 15px;
-    &_item {
-      border-radius: 6px;
-      box-sizing: border-box;
-      padding-left: 10px;
-      cursor: pointer;
-      & + .history_sider_item {
-        margin-top: 10px;
-      }
-      &.active {
-        background: #f5f7fa;
-      }
-    }
-  }
-  .download_wrap {
-    margin-bottom: 20px;
+  .pc_bottom_content {
+    max-width: var(--page-width);
+    margin: auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .download_button {
-    font-size: 12px;
-    border-radius: 66px;
-    padding: 10px 10px;
-    box-sizing: border-box;
-    min-width: 80px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #fbca37;
-    line-height: 1;
-    text-decoration: none;
-    color: #000;
-    &:hover {
-      opacity: 0.8;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    .pc_bottom_content_tab{
+      box-sizing: border-box;
+      background-color: #ffffff;
+      max-width: 410px;
+      height: 160px;
+      padding: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      .pc_bottom_content_tab_icon {}
+      .pc_bottom_content_tab_label {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #000000;
+      }
+    }
+    .pc_bottom_content_img {
+      //padding: 0 30px;
     }
   }
-  .title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-    line-height: 1.57;
-  }
-  .msg {
-    font-size: 13px;
-    //color: #b0b0b0;
-    color: #969696;
-    word-wrap: break-word;
-    word-break: break-all;
-    white-space: pre-line;
-    margin-top: 10px;
-  }
-}
-.line_btn.open + .history {
-  display: flex;
 }
 @media (max-width: 1024px) {
   .pc {
@@ -426,6 +372,7 @@ function handleHistory() {
   .pc {
     flex-direction: column-reverse;
     gap: 60px;
+    padding: 0 20px;
     .line_btn_wrap {
       gap: 10px !important;
     }
@@ -433,23 +380,14 @@ function handleHistory() {
       //display: none;
     }
   }
-  .history_sider {
-    width: 126px;
-    font-size: 12px;
-    padding: 4px;
+  .pc_bottom_content {
+    padding: 0 30px;
   }
-  .history .history_content {
-    padding: 10px;
-  }
-  .history .title {
-    font-size: 12px;
-  }
-  .history .download_wrap {
-    margin-bottom: 10px;
-  }
-  .history .download_button {
-    padding: 10px 5px;
-    min-width: 60px;
+  .pc_bottom_content_tab {
+    justify-content: flex-start!important;
+    max-width: 100%!important;
+    width: 100%!important;
+    height: 140px!important;
   }
 }
 </style>

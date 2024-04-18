@@ -5,8 +5,8 @@ export default {
   },
   PC: {
     UpgradeGuide: 'Connection Guide',
-    tutorial: 'Operation Guide',
-    chip: 'How do I confirm the chip type?',
+    tutorial: 'Documentation',
+    chip: 'How do I confirm the Mac’s chip type?',
     info: {
       lds: {
         title: 'Do you have a flash of genius today?',
@@ -59,6 +59,6 @@ export default {
     CreationMsg:
       'Currently, it only applies to Laser Pecker 4 and Laser Pecker LX1 (Suitable for all models except the LP1 series). For other models,please download Laser Pecker APP'
   },
-  HistoricalEdition: 'History Versions',
+  HistoricalEdition: 'Release Notes',
   download: 'Click Download'
 }

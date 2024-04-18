@@ -6,7 +6,7 @@ export default {
   PC: {
     UpgradeGuide: 'PC端升级指南',
     tutorial: 'PC端操作指南',
-    chip: '如何确认芯片类型？',
+    chip: '如何确认Mac芯片类型？',
     info: {
       lds: {
         title: '',

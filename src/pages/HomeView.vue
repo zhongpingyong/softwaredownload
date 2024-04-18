@@ -82,12 +82,13 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
 }
 @media (max-width: 768px) {
   .container .component {
-    padding: 40px 20px;
+    //padding: 40px 20px;
   }
 
   .container {
     box-sizing: border-box;
-    padding: 50px 0;
+    padding: 60px 0;
+    //padding: 50px 0;
   }
 }
 </style>
