@@ -7,7 +7,7 @@
         <div class="new_mobile-content_item_content">
           <div class="new_mobile-content_item_top">
             <div class="new_mobile-content_item_top_img_outer">
-              <img class="new_mobile-content_item_top_logo" src="@/assets/logo/logo.png" alt="logo">
+              <img class="new_mobile-content_item_top_logo" src="@/assets/logo/Logo.png" alt="logo">
             </div>
             <div class="new_mobile-content_item_top_right_outer">
               <div class="new_mobile-content_item_top_right_outer_title">LaserPecker Design Space</div>
@@ -38,7 +38,7 @@
         <div class="new_mobile-content_item_content">
           <div class="new_mobile-content_item_top">
             <div class="new_mobile-content_item_top_img_outer">
-              <img class="new_mobile-content_item_top_logo" src="@/assets/logo/logo1.png" alt="logo">
+              <img class="new_mobile-content_item_top_logo" src="@/assets/logo/Logo1.png" alt="logo">
             </div>
             <div class="new_mobile-content_item_top_right_outer">
               <div class="new_mobile-content_item_top_right_outer_title">LaserPecker </div>
@@ -80,7 +80,7 @@ import Apple from "@/pages/icon/Apple.vue";
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 83px 20px 0;
   .new_mobile-title{
     font-family: Cal Sans;
     font-size: 36px;
@@ -191,8 +191,8 @@ import Apple from "@/pages/icon/Apple.vue";
     }
   }
   .new_mobile-content_item{
-    max-width: 450px!important;
-    min-width: 450px!important;
+    max-width: 350px!important;
+    min-width: 350px!important;
   }
   .new_mobile-content{
     overflow-x: scroll;

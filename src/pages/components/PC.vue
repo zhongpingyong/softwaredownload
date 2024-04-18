@@ -230,6 +230,7 @@ onBeforeMount(() => {
   &_right {
     max-width: 614px;
     font-size: 0;
+    padding-top: 100px;
   }
   .flag {
     font-size: 50px;
@@ -287,7 +288,7 @@ onBeforeMount(() => {
     }
   }
   .line_btn {
-    font-family: Mona-Sans;
+    //font-family: Mona-Sans;
     font-size: 14px;
     color: #0a84ff;
     //margin-top: 21px;
@@ -322,8 +323,7 @@ onBeforeMount(() => {
     font-size: 50px;
     font-weight: 600;
     line-height: 60px;
-    padding-top: 99px;
-    padding-bottom: 36px;
+    padding: 99px 20px 36px;
   }
   .pc_bottom_content {
     max-width: var(--page-width);

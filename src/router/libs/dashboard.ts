@@ -14,16 +14,6 @@ export default [
         name: 'mobile',
         component: () =>
           import(/* webpackChunkName: "mobile" */ '@/pages/components/MobileCenter.vue')
-      },
-      {
-        path: 'mobile/creation',
-        name: 'Creation',
-        component: () => import(/* webpackChunkName: "mobile" */ '@/pages/components/Creation.vue')
-      },
-      {
-        path: 'mobile/community',
-        name: 'Community',
-        component: () => import(/* webpackChunkName: "mobile" */ '@/pages/components/Community.vue')
       }
     ]
   }

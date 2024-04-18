@@ -48,7 +48,7 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
 .container {
   box-sizing: border-box;
   //padding: 100px 0;
-  padding-top: 100px;
+  //padding-top: 100px;
   .component {
     box-sizing: border-box;
     //padding: 40px 30px;
@@ -87,7 +87,7 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
 
   .container {
     box-sizing: border-box;
-    padding: 60px 0;
+    //padding: 60px 0;
     //padding: 50px 0;
   }
 }
