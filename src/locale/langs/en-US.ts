@@ -1,64 +1,97 @@
 export default {
-  Platform: {
-    PC: 'PC',
-    Mobile: 'Mobile'
-  },
   PC: {
-    UpgradeGuide: 'Connection Guide',
-    tutorial: 'Documentation',
-    chip: 'How do I confirm the Mac’s chip type?',
-    info: {
-      lds: {
-        title: 'Do you have a flash of genius today?',
-        text: 'Download to convert your ideas into reality, easily creating professional, appealing works'
+    subTitle: 'LaserPecker Design Space',
+    title: 'Design, Customize and Create',
+    description:
+      'LaserPecker Design Space is a powerful dedicated tool for our laser engraving and cutting machines. Easily create projects with personalized engravings, intricate patterns, or precise cuts on a variety of materials.',
+    titleBottom: 'From Concept to Creation',
+    subTitleBox1: 'Quick Start with an Easy Learning Curve',
+    subTitleBox2: 'Material Test Grid for Better Results',
+    subTitleBox3: 'Precision Control with Multiple Layer Parameter Settings',
+    winPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/windows/laserpeckerForWindows-beta56.exe',
+    macPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/macos/laserpeckerForM1-beta56.dmg',
+    macIntelPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/macos/laserpeckerForMac-beta56.dmg',
+    lineBtnList: [
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf',
+        label: 'Release Notes'
       },
-      powerful: {
-        title: 'Powerful Enough for Experts',
-        magic: {
-          title: 'Magic Eraser Tool',
-          text: 'Discover the "Magic" behind. In a single click, lift a person, place, or thing from the image project you’re working on. After that, you can refine your selection with other tools if you need to.'
-        },
-        offset: {
-          title: 'Offset Tool',
-          text: 'With its assistance, you can effortlessly generate an expanded profile of the extracted shape while maintaining an equal distance between the two shapes. This harmonious balance enables you to explore the wonders of both laser-engraving and laser-cutting simultaneously'
-        },
-        help: {
-          title: 'Help engrave and cut in one time LaserPecker makes it easy!'
-        }
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf',
+        label: 'Documentation'
       },
-      grap: {
-        title: 'Graphic editing',
-        text: 'Support Array,\nBoolean Operations and Align features'
+      {
+        link: 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/Laserpecker-User-manual.pdf',
+        label: 'Connection Guide'
       },
-      textEditing: {
-        title: 'Text editing',
-        text: 'Applicable to QR codes and bar codes'
-      },
-      '4k': {
-        title: '4K Ultra\nFine Engraving',
-        text: 'Photo-realistic 4K engraving-accurate to less than 0.01 mm'
-      },
-      multiple: {
-        title: 'Multiple Formats Applicable',
-        text: 'Support multiple file formats for import and export, including JPG, PNG, DXF, and SVG'
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/KfcZw845siawpPk2kiBcSbRAnMb',
+        label: 'How do I confirm the Mac’s chip type?'
       }
-    }
+    ]
   },
   APP: {
-    Community: 'Community App',
-    CommunityName: 'LaserPecker',
-    Creation: 'Creative App',
-    CreationName: 'LaserPecker Design Space',
-    Privacy: 'Privacy Policy',
-    CommunityRules: 'Community Rules',
-    UpdateContent: 'Update Content',
-    DownLoad: 'Download',
-    DownErrorMsg:
-      'Click the button in the upper right corner and select Open in your default browser',
-    CommunityMsg: 'Be adapted to LaserPecker 1,LaserPecker 2,LaserPecker 3',
-    CreationMsg:
-      'Currently, it only applies to Laser Pecker 4 and Laser Pecker LX1 (Suitable for all models except the LP1 series). For other models,please download Laser Pecker APP'
-  },
-  HistoricalEdition: 'Release Notes',
-  download: 'Click Download'
+    title: 'Download LaserPecker App',
+    proTitle: 'Pro Version',
+    proAppTitle: 'LaserPecker Design Space',
+    proAppDes: 'Compatibility: LP4, LX1',
+    communityTitle: 'Community Version',
+    communityAppTitle: 'LaserPecker',
+    communityAppDes: 'Compatibility: LP3, LP2, LP1 series',
+    ios: {
+      pro: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/ios/Apple_pro_qr.png',
+        latestUpgrade: 'IOS v5.4.3',
+        updateList: [
+          'Added speed conversion prompt bubble.',
+          'Added firmware upgrade, timeout detection pop-up window.',
+          'Default dithering algorithm for externally imported image elements.',
+          'Sculpting layer displays all elements by default.',
+          'Updated ‘App update pop-up window style.'
+        ]
+      },
+      community: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/ios/Apple_community_qr.png',
+        latestUpgrade: 'IOS v5.4.3',
+        updateList: [
+          'Added speed conversion prompt bubble.',
+          'Added firmware upgrade, timeout detection pop-up window.',
+          'Default dithering algorithm for externally imported image elements.',
+          'Sculpting layer displays all elements by default.',
+          'Updated ‘App update pop-up window style.'
+        ]
+      }
+    },
+    android: {
+      pro: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/android/Android_pro_qr.png',
+        latestUpgrade: 'Android v5.4.3',
+        updateList: [
+          'Added speed conversion prompt bubble.',
+          'Added firmware upgrade, timeout detection pop-up window.',
+          'Default dithering algorithm for externally imported image elements.',
+          'Sculpting layer displays all elements by default.',
+          'Updated ‘App update pop-up window style.'
+        ]
+      },
+      community: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/android/Android_community_qr.png',
+        latestUpgrade: 'Android v5.4.3',
+        updateList: [
+          'Added speed conversion prompt bubble.',
+          'Added firmware upgrade, timeout detection pop-up window.',
+          'Default dithering algorithm for externally imported image elements.',
+          'Sculpting layer displays all elements by default.',
+          'Updated ‘App update pop-up window style.'
+        ]
+      }
+    }
+  }
 }

@@ -1,33 +1,97 @@
 export default {
-  Platform: {
-    PC: 'PC端',
-    Mobile: '移动端'
-  },
   PC: {
-    UpgradeGuide: 'PC端升级指南',
-    tutorial: 'PC端操作指南',
-    chip: '如何确认Mac芯片类型？',
-    info: {
-      lds: {
-        title: '',
-        text: ''
+    subTitle: 'LaserPecker 设计空间',
+    title: '设计、定制和创造',
+    description:
+      'LaserPecker Design Space 是用于我们激光雕刻和切割机的强大专用工具。轻松创建具有个性化雕刻、复杂图案或在各种材料上精确切割的项目。',
+    titleBottom: '从概念到创作',
+    subTitleBox1: '通过简单的学习曲线快速入门',
+    subTitleBox2: '材料测试网格以获得更好的结果',
+    subTitleBox3: '通过多层参数设置进行精确控制',
+    winPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/windows/laserpeckerForWindows-beta56.exe',
+    macPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/macos/laserpeckerForM1-beta56.dmg',
+    macIntelPath:
+      'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/apply/software/macos/laserpeckerForMac-beta56.dmg',
+    lineBtnList: [
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff',
+        label: '发行说明'
+      },
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff',
+        label: '文档'
+      },
+      {
+        link: 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/PC-Bate-UserManual-CN.pdf',
+        label: '连接指南'
+      },
+      {
+        link: 'https://laserpecker.feishu.cn/wiki/Mp5Iw493FipGBLkF5FhcSfainpe',
+        label: '如何确认 Mac 的芯片类型？'
       }
-    }
+    ]
   },
   APP: {
-    Community: '社区版APP',
-    CommunityName: '激光啄木鸟',
-    Creation: '创作版APP',
-    CreationName: '激光啄木鸟·创作',
-    Privacy: '隐私政策',
-    CommunityRules: '社区规则',
-    UpdateContent: '更新内容',
-    DownLoad: '点击下载',
-    DownErrorMsg: '点击右上角按钮,选择在默认浏览器中打开',
-    CommunityMsg: '适配于LaserPecker 1,LaserPecker 2,LaserPecker 3',
-    CreationMsg:
-      '目前只适配于LaserPecker 4及LaserPecker LX1（仅适配L1及以上机型），其他机型请下载LaserPecker APP'
-  },
-  HistoricalEdition: '历史版本',
-  download: '点击下载'
+    title: '激光啄木鸟App下载',
+    proTitle: 'Pro Version',
+    proAppTitle: 'LaserPecker 设计空间',
+    proAppDes: '兼容性：LP4、LX1',
+    communityTitle: '社区版',
+    communityAppTitle: 'LaserPecker',
+    communityAppDes: '兼容性：LP3、LP2、LP1系列',
+    ios: {
+      pro: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/ios/Apple_pro_qr.png',
+        latestUpgrade: 'IOS v5.4.3',
+        updateList: [
+          '添加了速度转换提示气泡。',
+          '新增固件升级、超时检测弹窗。',
+          '外部导入的图像元素的默认抖动算法。',
+          '默认情况下，雕刻图层显示所有元素。',
+          '更新了“应用更新”弹出窗口样式。'
+        ]
+      },
+      community: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/ios/Apple_community_qr.png',
+        latestUpgrade: 'IOS v5.4.3',
+        updateList: [
+          '添加了速度转换提示气泡。',
+          '新增固件升级、超时检测弹窗。',
+          '外部导入的图像元素的默认抖动算法。',
+          '默认情况下，雕刻图层显示所有元素。',
+          '更新了“应用更新”弹出窗口样式。'
+        ]
+      }
+    },
+    android: {
+      pro: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/android/Android_pro_qr.png',
+        latestUpgrade: 'Android v5.4.3',
+        updateList: [
+          '添加了速度转换提示气泡。',
+          '新增固件升级、超时检测弹窗。',
+          '外部导入的图像元素的默认抖动算法。',
+          '默认情况下，雕刻图层显示所有元素。',
+          '更新了“应用更新”弹出窗口样式。'
+        ]
+      },
+      community: {
+        appLink: 'https://apps.apple.com/us/app/laserpecker/id1565790196',
+        qrLink: '/QR/android/Android_community_qr.png',
+        latestUpgrade: 'Android v5.4.3',
+        updateList: [
+          '添加了速度转换提示气泡。',
+          '新增固件升级、超时检测弹窗。',
+          '外部导入的图像元素的默认抖动算法。',
+          '默认情况下，雕刻图层显示所有元素。',
+          '更新了“应用更新”弹出窗口样式。'
+        ]
+      }
+    }
+  }
 }

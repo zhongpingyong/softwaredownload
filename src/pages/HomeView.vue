@@ -1,17 +1,5 @@
 <template>
   <div class="container">
-    <!--    <div class="subsection">-->
-    <!--      <router-link to="/" class="subsection_item" :class="{ active: route.name === 'pc' }">-->
-    <!--        {{ $t('Platform.PC') }}-->
-    <!--      </router-link>-->
-    <!--      <router-link-->
-    <!--        to="/mobile"-->
-    <!--        class="subsection_item"-->
-    <!--        :class="{ active: route.fullPath?.includes('mobile') }"-->
-    <!--      >-->
-    <!--        {{ $t('Platform.Mobile') }}-->
-    <!--      </router-link>-->
-    <!--    </div>-->
     <div class="component">
       <router-view v-slot="{ Component }">
         <keep-alive>
@@ -45,6 +33,9 @@ if (isMobile() && route.path.indexOf('mobile') === -1) {
 </script>
 
 <style lang="scss" scoped>
+body {
+  background: #f4f4f4;
+}
 .container {
   box-sizing: border-box;
   //padding: 100px 0;

@@ -6,13 +6,11 @@
       <div class="pc_left">
         <div class="pc_left_top_box">
           <div class="pc_logo">
-            <div class="pc_logo_text MonaSans">LaserPecker Design Space</div>
+            <div class="pc_logo_text MonaSans">{{ $t('PC.subTitle') }}</div>
           </div>
-          <div class="flag CalSans">Design, Customize and Create</div>
+          <div class="flag CalSans">{{ $t('PC.title') }}</div>
           <div class="flag_des MonaSans">
-            LaserPecker Design Space is a powerful dedicated tool for our laser engraving and
-            cutting machines. Easily create projects with personalized engravings, intricate
-            patterns, or precise cuts on a variety of materials.
+            {{ $t('PC.description') }}
           </div>
         </div>
 
@@ -38,54 +36,18 @@
             </div>
           </a>
         </div>
-        <!-- <div class="message" v-if="json.message">{{ json.message }}</div> -->
         <div
           class="line_btn_wrap"
           style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap"
         >
           <a
             class="line_btn"
-            :href="
-              locale.startsWith('zh')
-                ? 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff'
-                : 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf'
-            "
+            v-for="item of lineBtnList"
+            :href="item.link"
+            :key="item.link"
             target="_blank"
           >
-            {{ $t('HistoricalEdition') }}
-          </a>
-          <a
-            class="line_btn"
-            :href="
-              locale.startsWith('zh')
-                ? 'https://laserpecker.feishu.cn/wiki/Sr9nwBEPyiwSk1k8omgcR8Ainff'
-                : 'https://laserpecker.feishu.cn/wiki/HqOkwBHZJiQueqkfJQScYaYHnGf'
-            "
-            target="_blank"
-          >
-            {{ $t('PC.tutorial') }}
-          </a>
-          <a
-            class="line_btn"
-            :href="
-              locale.startsWith('zh')
-                ? 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/PC-Bate-UserManual-CN.pdf'
-                : 'https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/pecker/doc/Laserpecker-User-manual.pdf'
-            "
-            target="_blank"
-          >
-            {{ $t('PC.UpgradeGuide') }}
-          </a>
-          <a
-            class="line_btn"
-            :href="
-              locale.startsWith('zh')
-                ? 'https://laserpecker.feishu.cn/wiki/Mp5Iw493FipGBLkF5FhcSfainpe'
-                : 'https://laserpecker.feishu.cn/wiki/KfcZw845siawpPk2kiBcSbRAnMb'
-            "
-            target="_blank"
-          >
-            {{ $t('PC.chip') }}
+            {{ item.label }}
           </a>
         </div>
       </div>
@@ -94,15 +56,14 @@
       </div>
     </div>
     <div class="pc_bottom">
-      <p class="pc_bottom_title CalSans">From Concept to Creation</p>
+      <p class="pc_bottom_title CalSans">{{ $t('PC.titleBottom') }}</p>
       <div class="pc_bottom_content">
         <div class="pc_bottom_content_tab">
           <div class="pc_bottom_content_tab_icon">
             <Book />
           </div>
           <div class="pc_bottom_content_tab_label MonaSans">
-            Quick Start with
-            an Easy Learning Curve
+            {{ $t('PC.subTitleBox1') }}
           </div>
         </div>
         <div class="pc_bottom_content_tab">
@@ -110,8 +71,7 @@
             <Grid />
           </div>
           <div class="pc_bottom_content_tab_label MonaSans">
-            Material Test Grid
-            for Better Results
+            {{ $t('PC.subTitleBox2') }}
           </div>
         </div>
         <div class="pc_bottom_content_tab">
@@ -119,13 +79,15 @@
             <Setting />
           </div>
           <div class="pc_bottom_content_tab_label MonaSans">
-            Precision Control with
-            Multiple Layer Parameter
-            Settings
+            {{ $t('PC.subTitleBox3') }}
           </div>
         </div>
         <div class="pc_bottom_content_img">
-          <img src="@/assets/pc_bottom_img.png" alt="From Concept to Creation" style="width: 100%;border-radius: 10px;" />
+          <img
+            src="@/assets/pc_bottom_img.png"
+            alt="From Concept to Creation"
+            style="width: 100%; border-radius: 10px"
+          />
         </div>
       </div>
     </div>
@@ -133,9 +95,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, ref, reactive } from 'vue'
+import { onBeforeMount, ref, reactive, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import axios from 'axios'
+const { tm } = useI18n()
 import Window from '../icon/Window.vue'
 import MAC from '../icon/MAC.vue'
 import Book from '../icon/Book.vue'
@@ -143,17 +105,23 @@ import Grid from '../icon/Grid.vue'
 import Setting from '../icon/Setting.vue'
 import { isMobile, isWin } from './utils'
 
-const { locale } = useI18n()
 const active = ref<'' | 'win' | 'mac' | 'mac_m'>('')
 const json = reactive({
   winPath: '',
   macPath: '',
-  macIntelPath: '',
-  message: ''
+  macIntelPath: ''
 })
 const loading = ref(true)
 const error = ref(false)
-const datas = reactive<any[]>([])
+const lineBtnList = ref<any[]>([])
+onMounted(() => {
+  const { lineBtnList: lineBtnListOrg, winPath, macPath, macIntelPath } = tm('PC') as any
+  json.winPath = winPath
+  json.macPath = macPath
+  json.macIntelPath = macIntelPath
+  lineBtnList.value = lineBtnListOrg
+  loading.value = false
+})
 onBeforeMount(() => {
   if (!isMobile()) {
     const cores = navigator.hardwareConcurrency
@@ -165,31 +133,14 @@ onBeforeMount(() => {
       active.value = 'mac'
     }
   }
-  const win = () => axios.get('./PCWin.json?time=' + new Date().getTime())
-  const mac = () => axios.get('./PCMac.json?time=' + new Date().getTime())
-  const macIntel = () => axios.get('./PCMacIntel.json?time=' + new Date().getTime())
-  Promise.all([win(), mac(), macIntel()])
-    .then(([win, mac, macIntel]) => {
-      try {
-        loading.value = false
-        json.winPath = win.data[win.data.length - 1].path
-        json.macPath = mac.data[mac.data.length - 1].path
-        json.macIntelPath = macIntel.data[macIntel.data.length - 1].path
-        json.message = win.data[win.data.length - 1].message
-        datas.push([...win.data].reverse())
-        datas.push([...macIntel.data].reverse())
-        datas.push([...mac.data].reverse())
-      } catch (e) {
-        console.error(e)
-        error.value = true
-      }
-    })
-    .catch(() => {
-      error.value = true
-    })
 })
 </script>
-
+<style>
+body {
+  background: linear-gradient(0deg, rgba(251, 250, 248, 0.9), rgba(251, 250, 248, 0.9)),
+    linear-gradient(180deg, #fffcee 3%, #fbf1c9 100%);
+}
+</style>
 <style lang="scss" scoped>
 .outer {
   --page-width: 1306px;
@@ -198,7 +149,7 @@ onBeforeMount(() => {
   }
   .MonaSans {
     font-family: Mona-Sans;
-  };
+  }
 }
 .pc {
   max-width: var(--page-width);
@@ -299,19 +250,6 @@ onBeforeMount(() => {
       text-decoration: underline;
     }
   }
-  .message {
-    margin-top: 20px;
-    background-color: #b0b0b0;
-    border-radius: 8px;
-    overflow: auto;
-    white-space: pre-wrap;
-    word-break: break-all;
-    max-height: 250px;
-    width: 300px;
-    box-sizing: border-box;
-    font-size: 12px;
-    padding: 12px;
-  }
 }
 .pc_bottom {
   background: #fbd13d;
@@ -332,7 +270,7 @@ onBeforeMount(() => {
     gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
-    .pc_bottom_content_tab{
+    .pc_bottom_content_tab {
       box-sizing: border-box;
       background-color: #ffffff;
       max-width: 410px;
@@ -343,7 +281,8 @@ onBeforeMount(() => {
       align-items: center;
       justify-content: center;
       gap: 30px;
-      .pc_bottom_content_tab_icon {}
+      .pc_bottom_content_tab_icon {
+      }
       .pc_bottom_content_tab_label {
         font-size: 18px;
         font-weight: 500;
@@ -384,10 +323,10 @@ onBeforeMount(() => {
     padding: 0 30px;
   }
   .pc_bottom_content_tab {
-    justify-content: flex-start!important;
-    max-width: 100%!important;
-    width: 100%!important;
-    height: 140px!important;
+    justify-content: flex-start !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 140px !important;
   }
 }
 </style>

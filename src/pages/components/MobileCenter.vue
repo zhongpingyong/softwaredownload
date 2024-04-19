@@ -1,29 +1,37 @@
 <template>
   <div class="new_mobile">
-    <div class="new_mobile-title">Download LaserPecker App</div>
+    <div class="new_mobile-title">{{ $t('APP.title') }}</div>
     <div class="new_mobile-content">
       <div class="new_mobile-content_item">
-        <div class="new_mobile-content_item_title">Pro Version</div>
+        <div class="new_mobile-content_item_title">{{ $t('APP.proTitle') }}</div>
         <div class="new_mobile-content_item_content">
           <div class="new_mobile-content_item_top">
             <div class="new_mobile-content_item_top_img_outer">
-              <img
-                class="new_mobile-content_item_top_logo"
-                src="@/assets/logo/Logo.png"
-                alt="logo"
-              />
+              <img class="new_mobile-content_item_top_logo" :src="img_url_pro" alt="logo" />
             </div>
             <div class="new_mobile-content_item_top_right_outer">
               <div class="new_mobile-content_item_top_right_outer_title">
-                LaserPecker Design Space
+                {{ $t('APP.proAppTitle') }}
               </div>
-              <div class="new_mobile-content_item_top_right_outer_des">Compatibility: LP4, LX1</div>
+              <div class="new_mobile-content_item_top_right_outer_des">
+                {{ $t('APP.proAppDes') }}
+              </div>
               <div class="new_mobile-content_item_top_right_outer_buttons">
-                <div class="new_mobile-content_item_top_right_outer_button">
+                <div
+                  class="new_mobile-content_item_top_right_outer_button"
+                  @click="handleOpen('ios', 'pro')"
+                  @mouseenter="handleMouseenter('ios', 'pro')"
+                  @mouseout="handleMouseout('ios', 'pro')"
+                >
                   <Apple />
                   App Store
                 </div>
-                <div class="new_mobile-content_item_top_right_outer_button">
+                <div
+                  class="new_mobile-content_item_top_right_outer_button"
+                  @click="handleOpen('android', 'pro')"
+                  @mouseenter="handleMouseenter('android', 'pro')"
+                  @mouseout="handleMouseout('android', 'pro')"
+                >
                   <Android />
                   Android
                 </div>
@@ -34,48 +42,48 @@
           <div class="new_mobile-content_item_bottom">
             <div class="new_mobile-content_item_bottom_title">
               Latest Upgrade：
-              <span>IOS v5.4.3</span>
+              <span>{{ latestUpgrade_pro }}</span>
             </div>
-            <div class="new_mobile-content_item_bottom_li">
-              1. Added speed conversion prompt bubble.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              2. Added firmware upgrade, timeout detection pop-up window.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              3. Default dithering algorithm for externally imported image elements.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              4. Sculpting layer displays all elements by default.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              5. Updated ‘App update pop-up window style.
+            <div
+              class="new_mobile-content_item_bottom_li"
+              v-for="(item, index) of updateList_pro"
+              :key="item"
+            >
+              {{ index + 1 }}. {{ item }}
             </div>
           </div>
         </div>
       </div>
       <div class="new_mobile-content_item">
-        <div class="new_mobile-content_item_title">Community Version</div>
+        <div class="new_mobile-content_item_title">{{ $t('APP.communityTitle') }}</div>
         <div class="new_mobile-content_item_content">
           <div class="new_mobile-content_item_top">
             <div class="new_mobile-content_item_top_img_outer">
-              <img
-                class="new_mobile-content_item_top_logo"
-                src="@/assets/logo/Logo1.png"
-                alt="logo"
-              />
+              <img class="new_mobile-content_item_top_logo" :src="img_url_community" alt="logo" />
             </div>
             <div class="new_mobile-content_item_top_right_outer">
-              <div class="new_mobile-content_item_top_right_outer_title">LaserPecker</div>
+              <div class="new_mobile-content_item_top_right_outer_title">
+                {{ $t('APP.communityAppTitle') }}
+              </div>
               <div class="new_mobile-content_item_top_right_outer_des">
-                Compatibility: LP3, LP2, LP1 series
+                {{ $t('APP.communityAppDes') }}
               </div>
               <div class="new_mobile-content_item_top_right_outer_buttons">
-                <div class="new_mobile-content_item_top_right_outer_button">
+                <div
+                  class="new_mobile-content_item_top_right_outer_button"
+                  @click="handleOpen('ios', 'community')"
+                  @mouseenter="handleMouseenter('ios', 'community')"
+                  @mouseout="handleMouseout('ios', 'community')"
+                >
                   <Apple />
                   App Store
                 </div>
-                <div class="new_mobile-content_item_top_right_outer_button">
+                <div
+                  class="new_mobile-content_item_top_right_outer_button"
+                  @click="handleOpen('android', 'community')"
+                  @mouseenter="handleMouseenter('android', 'community')"
+                  @mouseout="handleMouseout('android', 'community')"
+                >
                   <Android />
                   Android
                 </div>
@@ -86,22 +94,14 @@
           <div class="new_mobile-content_item_bottom">
             <div class="new_mobile-content_item_bottom_title">
               Latest Upgrade：
-              <span>IOS v5.4.3</span>
+              <span>{{ latestUpgrade_community }}</span>
             </div>
-            <div class="new_mobile-content_item_bottom_li">
-              1. Added speed conversion prompt bubble.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              2. Added firmware upgrade, timeout detection pop-up window.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              3. Default dithering algorithm for externally imported image elements.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              4. Sculpting layer displays all elements by default.
-            </div>
-            <div class="new_mobile-content_item_bottom_li">
-              5. Updated ‘App update pop-up window style.
+            <div
+              class="new_mobile-content_item_bottom_li"
+              v-for="(item, index) of updateList_community"
+              :key="item"
+            >
+              {{ index + 1 }}. {{ item }}
             </div>
           </div>
         </div>
@@ -113,8 +113,61 @@
 <script lang="ts" setup>
 import Android from '@/pages/icon/Android.vue'
 import Apple from '@/pages/icon/Apple.vue'
-</script>
 
+import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { tm } = useI18n()
+const img_url_pro = ref('/logo/Logo.png')
+const img_url_community = ref('/logo/Logo1.png')
+const latestUpgrade_pro = ref('')
+const latestUpgrade_community = ref('')
+const updateList_pro = ref([])
+const updateList_community = ref([])
+
+const downLoad = (path: string) => {
+  const a = document.createElement('a')
+  a.style.display = 'none'
+  a.setAttribute('target', '_blank')
+  a.href = path
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+const handleOpen = (type: string, version: string) => {
+  const { appLink } = tm(`APP.${type}.${version}`) as any
+  downLoad(appLink)
+}
+const handleMouseenter = (type: string, version: string, init?: boolean) => {
+  const { qrLink, latestUpgrade, updateList } = tm(`APP.${type}.${version}`) as any
+  if (version === 'pro') {
+    init ? void 0 : (img_url_pro.value = qrLink)
+    latestUpgrade_pro.value = latestUpgrade
+    updateList_pro.value = updateList
+  }
+  if (version === 'community') {
+    init ? void 0 : (img_url_community.value = qrLink)
+    latestUpgrade_community.value = latestUpgrade
+    updateList_community.value = updateList
+  }
+}
+const handleMouseout = (type: string, version: string) => {
+  if (version === 'pro') {
+    img_url_pro.value = '/logo/Logo.png'
+  }
+  if (version === 'community') {
+    img_url_community.value = '/logo/Logo1.png'
+  }
+}
+onMounted(() => {
+  handleMouseenter('ios', 'pro', true)
+  handleMouseenter('ios', 'community', true)
+})
+</script>
+<style>
+body {
+  background: #f4f4f4;
+}
+</style>
 <style lang="scss" scoped>
 .new_mobile {
   --page-width: 1306px;
@@ -240,6 +293,9 @@ import Apple from '@/pages/icon/Apple.vue'
   .new_mobile-content {
     overflow-x: scroll;
     scroll-behavior: smooth;
+  }
+  .new_mobile-content_item_content {
+    padding: 40px;
   }
 }
 </style>
